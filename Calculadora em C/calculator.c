@@ -37,7 +37,7 @@ int main() {
                 goto Invalid_input;
             }
 
-            // Getting first value from user
+            // Getting second value from user
             while (true) {
                 
                 printf("SECOND VALUE: ");
