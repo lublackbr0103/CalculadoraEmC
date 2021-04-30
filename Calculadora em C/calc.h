@@ -15,6 +15,7 @@ void intro(){
     printf("\n\n");
 }
 
+// Print arithmetic operators
 void show_operation(){
         printf("What operation do you want to use?\n");
         printf("Sum\t\t\t+\n");
