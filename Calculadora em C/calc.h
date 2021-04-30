@@ -15,6 +15,14 @@ void intro(){
     printf("\n\n");
 }
 
+void show_operation(){
+        printf("What operation do you want to use?\n");
+        printf("Sum\t\t\t+\n");
+        printf("Subtraction\t\t-\n");
+        printf("Multiplication\t\t*\n");
+        printf("Division\t\t/\n");
+}
+
 // Add new line
 void space(){
     printf("\n");
