@@ -71,6 +71,7 @@ int main() {
         char operation;
         label1:
         show_operation();
+        
         scanf(" %c", &operation);
         getchar();        
 
