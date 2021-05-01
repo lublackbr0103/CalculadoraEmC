@@ -14,10 +14,7 @@ int main() {
     setlocale(LC_ALL, "");
 
     while (true) {
-
-        // "-- SIMPLE CALC --"
-        intro();      
-
+        
         while (true){
 
             fflush(stdin);
@@ -26,24 +23,24 @@ int main() {
             // Get arithmetic operator from user
             do
             {
+                // "-- SIMPLE CALC --"
+                intro();
+
                 show_operation(); scanf("%c", &operation);
 
-                for (int i = 0; i < strlen(operations); i++)
+                if (operation == '+' || operation == '-' || operation == '*' || operation == '/')
                 {
-                        if (operation == '+' || operation == '-' || operation == '*' || operation == '/')
-                        {
-                                key = false;
-                                break;
-                        }
-                        else
-                        {
-                                fflush(stdin);
-                                error();
-                                break;
-                        }
+                    key = false;
+                    break;
+                }
+                else
+                {
+                    error();
+                    key = true;
+                    fflush(stdin);
+                    system("cls");
                 }
             } while (key);
-
 
             inputError_Control:
             
