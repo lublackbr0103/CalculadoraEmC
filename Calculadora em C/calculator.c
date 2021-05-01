@@ -6,8 +6,11 @@
 
 int main() {
 
-    float a, b, result;
-    char a_input[100], b_input[100];
+    float firstValue, secondValue, result;
+    char input_firstValue[100], input_secondValue[100];
+    char operation;
+    char operations[5] = {'+', '-', '*', '/'};
+    bool key = true;
     setlocale(LC_ALL, "");
 
     while (true) {
@@ -18,45 +21,72 @@ int main() {
         while (true){
 
             fflush(stdin);
+
+            arithmeticError_Control:
+            // Get arithmetic operator from user
+            do
+            {
+                show_operation(); scanf("%c", &operation);
+
+                for (int i = 0; i < strlen(operations); i++)
+                {
+                        if (operation == '+' || operation == '-' || operation == '*' || operation == '/')
+                        {
+                                key = false;
+                                break;
+                        }
+                        else
+                        {
+                                fflush(stdin);
+                                error();
+                                break;
+                        }
+                }
+            } while (key);
+
+
+            inputError_Control:
             
             // Getting first value from user
             while (true) {
                 
+                fflush(stdin);
                 printf("FIRST VALUE: ");
-                fgets(a_input, sizeof(a_input), stdin);
-                sscanf(a_input, "%f", &a);
+                fgets(input_firstValue, sizeof(input_firstValue), stdin);
+                sscanf(input_firstValue, "%f", &firstValue);
 
-                int scanning = find(a_input); /* Verify if there is any comma in input */
+                int scanning = find(input_firstValue); /* Verify if there is any comma in input */
 
                 if (scanning) {
                     break;
                 }
             }
 
-            if (!(sscanf(a_input, "%f", &a))){
+            if (!(sscanf(input_firstValue, "%f", &firstValue))){
                 goto Invalid_input;
             }
 
             // Getting second value from user
             while (true) {
                 
+                fflush(stdin);
                 printf("SECOND VALUE: ");
-                fgets(b_input, sizeof(b_input), stdin);
-                sscanf(b_input, "%f", &b);
+                fgets(input_secondValue, sizeof(input_secondValue), stdin);
+                sscanf(input_secondValue, "%f", &secondValue);
 
-                int scanning = find(b_input);
+                int scanning = find(input_secondValue);
 
                 if (scanning) {
                     break;
                 }
             }
 
-            if (!(sscanf(b_input, "%f", &b))) {
+            if (!(sscanf(input_secondValue, "%f", &secondValue))) {
                 goto Invalid_input;
             }
 
             // Validate input if it is a floating point number
-            if (sscanf(a_input, "%f", &a) && sscanf(b_input, "%f", &b)) {
+            if (sscanf(input_firstValue, "%f", &firstValue) && sscanf(input_secondValue, "%f", &secondValue)) {
                 break;
             }
             
@@ -64,43 +94,34 @@ int main() {
             Invalid_input:
                 printf("Invalid input!\nPlease enter only numbers...\n");
                 sleep(1);
-                continue;
+                goto inputError_Control;
         }
 
-        // Choosing operation
-        char operation;
-        label1:
-        show_operation();
-        
-        scanf(" %c", &operation);
-        getchar();        
-
-        if (operation == '+') {
-            result = sum(strtof(a_input, NULL), strtof(b_input, NULL));
-        }
-        else if (operation == '-') {
-            result = sub(strtof(a_input, NULL), strtof(b_input, NULL));
-        }
-        else if (operation == '*')
+        switch (operation)
         {
-            result = mult(strtof(a_input, NULL), strtof(b_input, NULL));
-        }
-        else if (operation == '/')
-        {
-            result = divi(strtof(a_input, NULL), strtof(b_input, NULL));
-        }
-        else
-        {
+        case '+':
+            result = sum(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
+            break;
+        case '-':
+            result = sub(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
+            break;
+        case '*':
+            result = mult(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
+            break;
+        case '/':
+            result = mult(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
+            break;
+        default:
             printf("Enter a valid operator!\n");
             sleep(1);
-            //system("cls");
-            goto label1;
-        }
-        
+            goto arithmeticError_Control;
+            break;
+        }  
+
         // Printing the result on Screen
         space();
-        printf("First Value: %.2f\n", a);
-        printf("Second Value: %.2f\n", b);
+        printf("First Value: %.2f\n", firstValue);
+        printf("Second Value: %.2f\n", secondValue);
         printf("\nRESULT: %.2f\n", result);
         space();
 

@@ -63,3 +63,8 @@ int find(char *x){
             fflush(stdin);
         }
     }
+
+void error(){
+        printf("Invalid operation!\n");
+        sleep(2);
+}
