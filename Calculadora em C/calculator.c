@@ -107,11 +107,6 @@ int main() {
         case '/':
             result = divi(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
             break;
-        default:
-            printf("Enter a valid operator!\n");
-            sleep(1);
-            goto arithmeticError_Control;
-            break;
         }  
 
         // Printing the result on Screen
