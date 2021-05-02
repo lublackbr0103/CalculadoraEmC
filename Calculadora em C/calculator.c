@@ -33,13 +33,12 @@ int main() {
                     key = false;
                     break;
                 }
-                else
-                {
-                    error();
-                    key = true;
-                    fflush(stdin);
-                    system("cls");
-                }
+
+                error();
+                key = true;
+                fflush(stdin);
+                system("cls");
+
             } while (key);
 
             inputError_Control:
@@ -106,7 +105,7 @@ int main() {
             result = mult(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
             break;
         case '/':
-            result = mult(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
+            result = divi(strtof(input_firstValue, NULL), strtof(input_secondValue, NULL));
             break;
         default:
             printf("Enter a valid operator!\n");
