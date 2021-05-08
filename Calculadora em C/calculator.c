@@ -1,3 +1,9 @@
+/*------------------------------------------------------------------------*
+Developer: Lucas Ferreira
+Location: São Paulo - SP
+Creation date: 02/05/2021
+Course: Self student
+*------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
